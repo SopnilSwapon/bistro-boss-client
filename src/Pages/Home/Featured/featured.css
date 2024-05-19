@@ -1,0 +1,8 @@
+.featured{
+    background-image: url('../../../assets//home/featured.jpg');
+    background-position: fixed;
+    background-attachment: fixed;
+    top: 0;
+
+    position: relative;
+}
