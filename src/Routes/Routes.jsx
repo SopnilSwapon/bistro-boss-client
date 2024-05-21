@@ -6,6 +6,8 @@ import Home from "../Pages/Home/Home";
 import OurMenu from "../Pages/OurMenu/OurMenu";
 import Order from "../Pages/Order/Order/Order";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
   
  export const router = createBrowserRouter([
     {
@@ -23,6 +25,10 @@ import Login from "../Pages/Login/Login";
         {
           path: '/order/:category',
           element: <Order></Order>
+        },
+        {
+          path: '/register',
+          element: <Register></Register>
         },
         {
           path: '/login',
