@@ -1,38 +1,53 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
-  const {user, userSignOut} = useContext(AuthContext);
-  const handleSignOut = () =>{
-   userSignOut()
-   .then(() =>{
-    Swal.fire({
-      icon: "success",
-      text: "sign out successful",
-    });
-   })
-   .then(error =>{
-    console.log(error.message);
-   })
+  const { user, userSignOut } = useContext(AuthContext);
+  const {cart, isLoading, isError, error} = useCart();
+  const handleSignOut = () => {
+    userSignOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          text: "sign out successful",
+        });
+      })
+      .then(error => {
+        console.log(error.message);
+      })
   }
   const navlinks = <>
     <li><NavLink to='/'>HOME</NavLink></li>
     <li><NavLink to='/menu'>OUR MENU</NavLink></li>
     <li><NavLink to='/order/salad'>ORDER</NavLink></li>
-    
-   {
-    user ? 
-    <>
-    <li onClick={handleSignOut}><NavLink>Sign Out</NavLink></li>
-    </>
-     : 
-     <>
-     <li><NavLink to='/login'>Login</NavLink></li>
-     </>
-   }
+    <li><NavLink to='/'>
+      <button className="flex items-center gap-2">
+        <FaShoppingCart className="text-xl"></FaShoppingCart>
+        <div className="badge badge-secondary">+{cart.length}</div>
+      </button>
+    </NavLink></li>
+
+    {
+      user ?
+        <>
+          <li onClick={handleSignOut}><Link>Sign Out</Link></li>
+        </>
+        :
+        <>
+          <li><NavLink to='/login'>Login</NavLink></li>
+        </>
+    }
   </>
+  if(isLoading){
+    return <p>loading.............</p>
+  }
+  if(isError){
+    return <p>{error}</p>
+  }
   return (
     <div className="navbar max-w-6xl bg-black font-extrabold fixed z-10 opacity-70 text-white">
       <div className="navbar-start">
@@ -52,7 +67,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-       {user &&  <a className="btn">Profile</a> }
+        {user && <a className="btn">Profile</a>}
       </div>
     </div>
   );
