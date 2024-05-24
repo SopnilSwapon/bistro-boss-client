@@ -23,7 +23,7 @@ const Login = () => {
           icon: "success",
           text: "sign In successful",
         });
-        navigate(location.state ? location.state : '/login')
+        navigate(location.state ? location.state : '/')
     })
     .then(error =>{
       console.log(error)

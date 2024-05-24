@@ -1,7 +1,7 @@
 
 
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
@@ -9,6 +9,9 @@ import Swal from 'sweetalert2';
 const Register = () => {
   const [disabled, setDisabled] = useState(true);
   const {crateAccount} = useContext(AuthContext)
+  const location = useLocation();
+     console.log(location);
+     const navigate = useNavigate();
     useEffect(()=>{
       loadCaptchaEnginge(6);
     },[])
@@ -25,6 +28,7 @@ const Register = () => {
             icon: "success",
             text: "Register in successful",
           });
+          navigate(location.state ? location.state : '/')
         })
         .then(error =>{
           console.log(error);
