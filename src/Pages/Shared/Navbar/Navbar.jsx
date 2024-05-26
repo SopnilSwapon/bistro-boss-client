@@ -16,9 +16,6 @@ const Navbar = () => {
           text: "sign out successful",
         });
       })
-      .then(error => {
-        console.log(error.message);
-      })
   }
   const navlinks = <>
     <li><NavLink to='/'>HOME</NavLink></li>

@@ -25,9 +25,9 @@ const Login = () => {
         });
         navigate(location.state ? location.state : '/')
     })
-    .then(error =>{
-      console.log(error)
-  })
+  //   .then(error =>{
+    
+  // })
   }
   const handleGoogleLogin = () =>{
     googleLogin()
