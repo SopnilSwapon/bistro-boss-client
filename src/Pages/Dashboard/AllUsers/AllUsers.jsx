@@ -24,7 +24,7 @@ const AllUsers = () => {
           }).then((result) => {
             if (result.isConfirmed) {
              
-              useAxiosSecure.delete(`/users/${user._id}`)
+              axiosPublic.delete(`/users/${user._id}`)
               .then(res =>{
                if(res.data.deletedCount > 0){
                 Swal.fire({
@@ -50,6 +50,7 @@ const AllUsers = () => {
                     text: "Make Admin Successful.",
                     icon: "success"
                   });
+                  refetch()
             }
         })
     }
