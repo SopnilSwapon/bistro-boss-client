@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const Login = () => {
      const location = useLocation();
-     console.log(location);
      const navigate = useNavigate();
      const {loginUser, googleLogin} = useContext(AuthContext);
      const {

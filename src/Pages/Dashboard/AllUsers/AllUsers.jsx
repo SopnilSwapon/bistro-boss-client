@@ -11,7 +11,8 @@ const AllUsers = () => {
             const res = await axiosPublic.get('/users');
             return res.data
         }
-    });
+    }
+);
     const handleDeleteUser = user => {
         Swal.fire({
             title: "Are you sure?",
@@ -74,8 +75,8 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <>
-                                <tr key={user._id}>
+                            users.map((user, index) => <div  key={user._id}>
+                                <tr>
                                     <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
@@ -95,7 +96,7 @@ const AllUsers = () => {
                                         </button>
                                     </td>
                                 </tr>
-                            </>)
+                            </div>)
                         }
 
                     </tbody>
